@@ -291,7 +291,9 @@ def placeVerWall(location):
 def handleMove(x,y):
     deleteTransPicturens()
 
-    global turn 
+    global turn
+    global running 
+    
     num = playerPos[turn-1]
     oldX, oldY = calculateIndex(num)  
     cells[oldY,oldX] = 0
@@ -304,6 +306,16 @@ def handleMove(x,y):
 
     drawPlayer()
     findPossibleMoves()
+
+    if (x==8 and turn == 2):
+        print("-------------------------------------------------GAME OVER!---------------------")
+        print("Winner:",turn)
+        running = False
+    elif (x==0 and turn == 1):
+        print("-------------------------------------------------GAME OVER!---------------------")
+        print("Winner:",turn)
+        running = False
+
 
     player = turn
     turn = player%2 +1
